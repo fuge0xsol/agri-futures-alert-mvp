@@ -5,12 +5,14 @@ from __future__ import annotations
 import json
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "output"
 DOCS = ROOT / "docs"
 STATE = ROOT / "state"
 DASHBOARD_STATE = STATE / "dashboard_state.json"
+BEIJING_TZ = ZoneInfo("Asia/Shanghai")
 
 
 def load_json(path: Path, default):
@@ -24,18 +26,39 @@ def save_json(path: Path, data) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def resolve_first_web_push_time(generated_at: str) -> str:
+def format_beijing_time(dt: datetime) -> str:
+    return dt.astimezone(BEIJING_TZ).strftime("%Y年%m月%d日%H时%M分")
+
+
+def parse_dashboard_time(value: str) -> datetime | None:
+    if not value:
+        return None
+    for parser in (
+        lambda s: datetime.fromisoformat(s),
+        lambda s: datetime.strptime(s, "%Y年%m月%d日%H时%M分").replace(tzinfo=BEIJING_TZ),
+    ):
+        try:
+            dt = parser(value)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=BEIJING_TZ)
+            return dt
+        except ValueError:
+            continue
+    return None
+
+
+def resolve_first_web_push_time(generated_at_display: str, generated_dt: datetime) -> str:
     """Keep a stable first web-push/deploy timestamp across local and GitHub runs."""
     state = load_json(DASHBOARD_STATE, {})
-    if state.get("first_web_push_at"):
-        return state["first_web_push_at"]
+    existing = state.get("first_web_push_at")
+    if existing:
+        parsed = parse_dashboard_time(existing)
+        return format_beijing_time(parsed) if parsed else existing
 
     existing_payload = load_json(DOCS / "dashboard_data.json", {})
-    first_web_push_at = (
-        existing_payload.get("first_web_push_at")
-        or existing_payload.get("generated_at")
-        or generated_at
-    )
+    existing = existing_payload.get("first_web_push_at") or existing_payload.get("generated_at")
+    parsed = parse_dashboard_time(existing) if existing else None
+    first_web_push_at = format_beijing_time(parsed or generated_dt)
     save_json(DASHBOARD_STATE, {"first_web_push_at": first_web_push_at})
     return first_web_push_at
 
@@ -48,8 +71,9 @@ def main() -> None:
     DOCS.mkdir(parents=True, exist_ok=True)
     signals = load_json(OUT / "signals.json", [])
     contracts = load_json(OUT / "main_contracts.json", [])
-    generated_at = datetime.now().isoformat(timespec="seconds")
-    first_web_push_at = resolve_first_web_push_time(generated_at)
+    generated_dt = datetime.now(BEIJING_TZ)
+    generated_at = format_beijing_time(generated_dt)
+    first_web_push_at = resolve_first_web_push_time(generated_at, generated_dt)
 
     active = [s for s in signals if s.get("signal_direction") in {"long", "short"}]
     long_count = sum(1 for s in active if s.get("signal_direction") == "long")
@@ -104,7 +128,7 @@ def main() -> None:
 <body>
 <header>
   <h1>农产品期货主力合约 Dashboard</h1>
-  <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略优先使用用户场外期权产品库。生成时间：{generated_at}；网页首次推送：{first_web_push_at}</div>
+  <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略优先使用用户场外期权产品库。生成时间：{generated_at}（北京时间）；网页首次推送：{first_web_push_at}（北京时间）</div>
 </header>
 <section class=\"grid\">
   <div class=\"card\"><div class=\"muted\">跟踪品种</div><div class=\"stat\" id=\"products\">-</div></div>
