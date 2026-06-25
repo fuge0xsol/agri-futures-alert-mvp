@@ -237,6 +237,65 @@ def match_otc_strategy(direction: str, confidence: int) -> tuple[str, str]:
         )
     return "暂不匹配", "信号不足，不建议新开方向性场外期权结构。"
 
+
+def build_otc_fundamental_analysis(item: dict, direction: str, strategy: str) -> str:
+    """Explain why the matched OTC structure fits or conflicts with fundamentals."""
+    f_score = int(item.get("fundamental_score", 0) or 0)
+    t_score = int(item.get("technical_score", 0) or 0)
+    total_score = int(item.get("total_score", t_score) or 0)
+    supply_bias = str(item.get("supply_bias", "neutral") or "neutral")
+    demand_bias = str(item.get("demand_bias", "neutral") or "neutral")
+    inventory_bias = str(item.get("inventory_bias", "neutral") or "neutral")
+    note = str(item.get("fundamental_note", "") or "")
+
+    if f_score >= 30:
+        f_view = "基本面偏多"
+    elif f_score <= -30:
+        f_view = "基本面偏空"
+    else:
+        f_view = "基本面中性"
+
+    bias_text = f"供给={supply_bias}，需求={demand_bias}，库存={inventory_bias}"
+    proxy_note = "基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。"
+
+    if direction == "long":
+        if f_score >= 20:
+            return (
+                f"{f_view}，与采购/累购类策略方向一致；{bias_text}。"
+                f"推{strategy}的基本面依据是现货/基差对期货有支撑，适合采购方防上涨或优化采购成本。{proxy_note}"
+            )
+        return (
+            f"{f_view}，对采购/累购类策略支撑不足；{bias_text}。"
+            f"若仍推{strategy}，应降低名义量，避免把技术信号交易变成无现货需求的投机多头。{proxy_note}"
+        )
+
+    if direction == "short":
+        if f_score <= -20:
+            return (
+                f"{f_view}，与库存保护/累沽类策略方向一致；{bias_text}。"
+                f"推{strategy}的基本面依据是现货或基差弱化，适合库存方锁定销售价格或增强下跌保护。{proxy_note}"
+            )
+        return (
+            f"{f_view}，与偏空OTC策略存在冲突；{bias_text}。"
+            f"若仍推{strategy}，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。{proxy_note}"
+        )
+
+    if f_score >= 30:
+        return (
+            f"{f_view}但技术未确认，暂不做强方向匹配；{bias_text}。"
+            f"更适合观察采购类结构的触发条件，例如采省易/累进宝，等待价格站回关键均线后再提高策略等级。{proxy_note}"
+        )
+    if f_score <= -30:
+        return (
+            f"{f_view}但技术未形成有效偏空信号，暂不做强方向匹配；{bias_text}。"
+            f"库存方可观察惠鑫保类保护结构，等待价格跌破关键支撑或总分转负后再推送。{proxy_note}"
+        )
+    return (
+        f"{f_view}，技术与基本面合成总分={total_score}，方向不足；{bias_text}。"
+        f"当前不建议新开方向性场外结构，等待现货/基差或技术趋势给出更清晰信号。{proxy_note}"
+    )
+
+
 def generate_signal(item: dict, cfg: SignalConfig) -> dict:
     score = int(item.get("total_score", item.get("technical_score", 0)))
     latest = float(item.get("latest_close") or item.get("trade") or 0)
@@ -273,6 +332,7 @@ def generate_signal(item: dict, cfg: SignalConfig) -> dict:
         confidence = max(0, min(100, abs(score)))
 
     strategy, strategy_reason = match_otc_strategy(direction, confidence)
+    strategy_fundamental_analysis = build_otc_fundamental_analysis(item, direction, strategy)
     return {
         "signal_direction": direction,
         "signal_status": status,
@@ -283,6 +343,7 @@ def generate_signal(item: dict, cfg: SignalConfig) -> dict:
         "confidence": confidence,
         "otc_strategy": strategy,
         "otc_reason": strategy_reason,
+        "otc_fundamental_analysis": strategy_fundamental_analysis,
     }
 
 
@@ -312,6 +373,7 @@ def signal_signature(item: dict) -> str:
         item.get("take_profit"),
         item.get("total_score"),
         item.get("fundamental_score"),
+        item.get("otc_fundamental_analysis"),
     ]
     return "|".join(str(x) for x in fields)
 
@@ -442,6 +504,7 @@ def build_telegram_message(signal_rows: list[dict], only_changes: bool = False) 
                 f"入场参考：{fmt_value(item.get('entry'))}",
                 f"止损：{fmt_value(item.get('stop_loss'))}，目标：{fmt_value(item.get('take_profit'))}",
                 f"OTC策略：{item['otc_strategy']}",
+                f"策略基本面：{item.get('otc_fundamental_analysis', '-')}",
                 f"理由：{item['reason']}；{item['otc_reason']}",
                 "",
             ]

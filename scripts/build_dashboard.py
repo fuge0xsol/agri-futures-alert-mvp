@@ -133,7 +133,7 @@ function render(filter='all') {{
       <td>最新：${{r.latest_close ?? '-'}}<br><span class=\"muted\">MA5：${{r.ma5 ?? '-'}} / MA20：${{r.ma20 ?? '-'}}</span></td>
       <td><span class=\"score ${{Number(r.total_score) >= 0 ? 'long' : 'short'}}\">总分：${{r.total_score ?? '-'}}</span><br><span class=\"muted\">技术：${{r.technical_score ?? '-'}} / 基本面：${{r.fundamental_score ?? 0}} / 置信：${{r.confidence ?? '-'}}</span></td>
       <td>入场：${{r.entry ?? '-'}}<br>止损：${{r.stop_loss ?? '-'}}<br>目标：${{r.take_profit ?? '-'}}</td>
-      <td><b>${{r.otc_strategy || '-'}}</b><br><span class=\"muted\">${{r.otc_reason || ''}}</span></td>
+      <td><b>${{r.otc_strategy || '-'}}</b><br><span class=\"muted\">${{r.otc_reason || ''}}</span><br><span class=\"muted\">策略基本面：${{r.otc_fundamental_analysis || '-'}}</span></td>
       <td class=\"reason\">${{r.reason || '-'}}<br><span class=\"muted\">${{r.fundamental_note || ''}}</span></td>
       <td>${{r.signal_change || '-'}}<br><span class=\"muted\">换月：${{r.rollover_status || '-'}}</span></td>`;
     tbody.appendChild(tr);
