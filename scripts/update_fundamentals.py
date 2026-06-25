@@ -56,10 +56,62 @@ def bias_label(score: int) -> str:
     return "neutral"
 
 
-def calc_factor(row_group: pd.DataFrame, code: str, name: str) -> dict:
+def safe_sum(series: pd.Series) -> float:
+    """Sum numeric-looking values from AKShare tables; tolerate comma strings and blanks."""
+    if series is None:
+        return 0.0
+    cleaned = series.astype(str).str.replace(",", "", regex=False).str.strip()
+    return float(pd.to_numeric(cleaned, errors="coerce").fillna(0).sum())
+
+
+def calc_inventory_score(daily_change: float) -> int:
+    """Rising warehouse receipts are bearish inventory pressure; falling receipts are bullish."""
+    if daily_change >= 500:
+        return -25
+    if daily_change >= 100:
+        return -12
+    if daily_change <= -500:
+        return 25
+    if daily_change <= -100:
+        return 12
+    return 0
+
+
+def fetch_cotton_inventory_factor(ak, trade_date: str) -> dict:
+    """Fetch CZCE cotton warehouse receipts and convert daily change into inventory bias."""
+    try:
+        receipt_map = ak.futures_warehouse_receipt_czce(date=trade_date)
+        cf = receipt_map.get("CF") if isinstance(receipt_map, dict) else None
+        if cf is None or cf.empty:
+            return {"inventory_score": 0, "inventory_bias": "neutral", "inventory_note": "郑商所棉花仓单表为空，库存按中性处理。"}
+
+        warehouse_receipts = safe_sum(cf.get("仓单数量"))
+        daily_change = safe_sum(cf.get("当日增减"))
+        effective_forecast = safe_sum(cf.get("有效预报"))
+        inventory_score = calc_inventory_score(daily_change)
+        inventory_note = (
+            f"郑商所棉花仓单：仓单{warehouse_receipts:.0f}张，"
+            f"当日增减{daily_change:+.0f}张，有效预报{effective_forecast:.0f}张，"
+            f"库存分{inventory_score}。"
+        )
+        return {
+            "inventory_score": inventory_score,
+            "inventory_bias": "bullish" if inventory_score > 0 else "bearish" if inventory_score < 0 else "neutral",
+            "inventory_note": inventory_note,
+        }
+    except Exception as exc:
+        return {
+            "inventory_score": 0,
+            "inventory_bias": "neutral",
+            "inventory_note": f"郑商所棉花仓单获取失败，库存按中性处理：{type(exc).__name__}: {exc}",
+        }
+
+
+def calc_factor(row_group: pd.DataFrame, code: str, name: str, extra: dict | None = None) -> dict:
     df = row_group.sort_values("date").copy()
     latest = df.iloc[-1]
     first = df.iloc[0]
+    extra = extra or {}
 
     spot_latest = pd.to_numeric(latest.get("spot_price"), errors="coerce")
     spot_first = pd.to_numeric(first.get("spot_price"), errors="coerce")
@@ -75,17 +127,22 @@ def calc_factor(row_group: pd.DataFrame, code: str, name: str) -> dict:
         # futures below spot (negative dom_basis_rate) treated as bullish spot premium.
         basis_score = clip(-basis_rate * 1000, -40, 40)
 
-    score = clip(spot_momentum_score + basis_score, -100, 100)
+    inventory_score = int(extra.get("inventory_score", 0) or 0)
+    inventory_bias = extra.get("inventory_bias") or bias_label(inventory_score)
+    inventory_note = extra.get("inventory_note", "")
+
+    score = clip(spot_momentum_score + basis_score + inventory_score, -100, 100)
     note = (
         f"AKShare现货/基差代理：现货{spot_latest}，主力基差率{basis_rate:.4f}，"
         f"现货动量分{spot_momentum_score}，基差分{basis_score}。"
+        f"{inventory_note}"
         "该分数是半自动代理，不等同完整库存/供需模型。"
     )
     return {
         "product_code": code,
         "product_name": name,
         "fundamental_score": score,
-        "inventory_bias": "neutral",
+        "inventory_bias": inventory_bias,
         "supply_bias": bias_label(basis_score),
         "demand_bias": bias_label(spot_momentum_score),
         "macro_bias": "neutral",
@@ -119,6 +176,7 @@ def main() -> None:
 
     rows = []
     raw = pd.DataFrame()
+    extra_factors = {"CF": fetch_cotton_inventory_factor(ak, end_day)}
     try:
         raw = ak.futures_spot_price_daily(start_day=start_day, end_day=end_day, vars_list=codes)
         raw.to_csv(OUT / "fundamental_spot_basis_raw.csv", index=False, encoding="utf-8-sig")
@@ -138,12 +196,12 @@ def main() -> None:
                 if group.empty:
                     rows.append(default_factor(code, name, "该品种无现货/基差行"))
                 else:
-                    rows.append(calc_factor(group, code, name))
+                    rows.append(calc_factor(group, code, name, extra_factors.get(code)))
 
     df = pd.DataFrame(rows)
     df.to_csv(CONFIG / "fundamental_factors.csv", index=False, encoding="utf-8-sig")
     df.to_csv(OUT / "fundamental_factors_latest.csv", index=False, encoding="utf-8-sig")
-    print(df[["product_code", "product_name", "fundamental_score", "supply_bias", "demand_bias", "updated_at"]].to_string(index=False))
+    print(df[["product_code", "product_name", "fundamental_score", "inventory_bias", "supply_bias", "demand_bias", "updated_at"]].to_string(index=False))
     print(f"\n已更新：{CONFIG / 'fundamental_factors.csv'}")
 
 
