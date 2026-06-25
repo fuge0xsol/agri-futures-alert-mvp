@@ -128,7 +128,7 @@ def main() -> None:
 <body>
 <header>
   <h1>农产品期货主力合约 Dashboard</h1>
-  <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略优先使用用户场外期权产品库。生成时间：{generated_at}（北京时间）；网页首次推送：{first_web_push_at}（北京时间）</div>
+  <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略优先使用用户场外期权产品库。生成时间：{generated_at}（北京时间）</div>
 </header>
 <section class=\"grid\">
   <div class=\"card\"><div class=\"muted\">跟踪品种</div><div class=\"stat\" id=\"products\">-</div></div>
