@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026年06月26日00时02分",
+  "generated_at": "2026年06月26日00时38分",
   "first_web_push_at": "2026年06月25日16时06分",
   "signals": [
     {
@@ -40,7 +40,7 @@
       "confidence": 6,
       "otc_strategy": "暂不匹配",
       "otc_reason": "信号不足，不建议新开方向性场外期权结构。",
-      "otc_fundamental_analysis": "基本面中性，技术与基本面合成总分=6，方向不足；供给=bearish，需求=neutral，库存=neutral。当前不建议新开方向性场外结构，等待现货/基差或技术趋势给出更清晰信号。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面中性，技术与基本面合成总分=6，方向不足；供给：偏空，需求：中性，库存：中性。当前不建议新开方向性场外结构，等待现货/基差或技术趋势给出更清晰信号。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "M2609",
       "confirmed_main": "M2609",
       "rollover_candidate": null,
@@ -49,7 +49,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "unchanged"
+      "signal_change": "changed"
     },
     {
       "product_code": "RM",
@@ -89,7 +89,7 @@
       "confidence": 3,
       "otc_strategy": "暂不匹配",
       "otc_reason": "信号不足，不建议新开方向性场外期权结构。",
-      "otc_fundamental_analysis": "基本面偏多但技术未确认，暂不做强方向匹配；供给=bullish，需求=neutral，库存=neutral。更适合观察采购类结构的触发条件，例如采省易/累进宝，等待价格站回关键均线后再提高策略等级。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面偏多但技术未确认，暂不做强方向匹配；供给：偏多，需求：中性，库存：中性。更适合观察采购类结构的触发条件，例如采省易/累进宝，等待价格站回关键均线后再提高策略等级。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "RM2609",
       "confirmed_main": "RM2609",
       "rollover_candidate": null,
@@ -138,7 +138,7 @@
       "confidence": 44,
       "otc_strategy": "凤凰累沽2.0 / 惠鑫保2.0",
       "otc_reason": "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
-      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给=neutral，需求=neutral，库存=neutral。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给：中性，需求：中性，库存：中性。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "Y2609",
       "confirmed_main": "Y2609",
       "rollover_candidate": null,
@@ -187,7 +187,7 @@
       "confidence": 59,
       "otc_strategy": "凤凰累沽2.0 / 惠鑫保2.0",
       "otc_reason": "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
-      "otc_fundamental_analysis": "基本面偏空，与库存保护/累沽类策略方向一致；供给=bearish，需求=neutral，库存=neutral。推凤凰累沽2.0 / 惠鑫保2.0的基本面依据是现货或基差弱化，适合库存方锁定销售价格或增强下跌保护。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面偏空，与库存保护/累沽类策略方向一致；供给：偏空，需求：中性，库存：中性。推凤凰累沽2.0 / 惠鑫保2.0的基本面依据是现货或基差弱化，适合库存方锁定销售价格或增强下跌保护。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "P2609",
       "confirmed_main": "P2609",
       "rollover_candidate": null,
@@ -236,7 +236,7 @@
       "confidence": 44,
       "otc_strategy": "凤凰累沽2.0 / 惠鑫保2.0",
       "otc_reason": "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
-      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给=bullish，需求=neutral，库存=neutral。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给：偏多，需求：中性，库存：中性。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "OI2609",
       "confirmed_main": "OI2609",
       "rollover_candidate": null,
@@ -245,7 +245,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "unchanged"
+      "signal_change": "changed"
     },
     {
       "product_code": "C",
@@ -285,7 +285,7 @@
       "confidence": 49,
       "otc_strategy": "凤凰累沽2.0 / 惠鑫保2.0",
       "otc_reason": "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
-      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给=neutral，需求=neutral，库存=neutral。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给：中性，需求：中性，库存：中性。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "C2609",
       "confirmed_main": "C2609",
       "rollover_candidate": null,
@@ -334,7 +334,7 @@
       "confidence": 47,
       "otc_strategy": "凤凰累沽2.0 / 惠鑫保2.0",
       "otc_reason": "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
-      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给=neutral，需求=neutral，库存=neutral。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给：中性，需求：中性，库存：中性。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "SR2609",
       "confirmed_main": "SR2609",
       "rollover_candidate": null,
@@ -343,7 +343,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "unchanged"
+      "signal_change": "changed"
     },
     {
       "product_code": "CF",
@@ -383,7 +383,7 @@
       "confidence": 36,
       "otc_strategy": "暂不匹配",
       "otc_reason": "信号不足，不建议新开方向性场外期权结构。",
-      "otc_fundamental_analysis": "基本面偏多但技术未确认，暂不做强方向匹配；供给=bullish，需求=neutral，库存=neutral。更适合观察采购类结构的触发条件，例如采省易/累进宝，等待价格站回关键均线后再提高策略等级。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面偏多但技术未确认，暂不做强方向匹配；供给：偏多，需求：中性，库存：中性。更适合观察采购类结构的触发条件，例如采省易/累进宝，等待价格站回关键均线后再提高策略等级。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "CF2609",
       "confirmed_main": "CF2609",
       "rollover_candidate": null,
@@ -432,7 +432,7 @@
       "confidence": 61,
       "otc_strategy": "凤凰累沽2.0 / 惠鑫保2.0",
       "otc_reason": "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
-      "otc_fundamental_analysis": "基本面偏空，与库存保护/累沽类策略方向一致；供给=bearish，需求=neutral，库存=neutral。推凤凰累沽2.0 / 惠鑫保2.0的基本面依据是现货或基差弱化，适合库存方锁定销售价格或增强下跌保护。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面偏空，与库存保护/累沽类策略方向一致；供给：偏空，需求：中性，库存：中性。推凤凰累沽2.0 / 惠鑫保2.0的基本面依据是现货或基差弱化，适合库存方锁定销售价格或增强下跌保护。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "LH2609",
       "confirmed_main": "LH2609",
       "rollover_candidate": null,
@@ -481,7 +481,7 @@
       "confidence": 49,
       "otc_strategy": "累进宝3.0 / 采省易3.0",
       "otc_reason": "偏多但强度一般，适合震荡偏强采购场景：争取区间补贴或上涨保护，下跌时需能承接采购/多头敞口。",
-      "otc_fundamental_analysis": "基本面中性，对采购/累购类策略支撑不足；供给=neutral，需求=neutral，库存=neutral。若仍推累进宝3.0 / 采省易3.0，应降低名义量，避免把技术信号交易变成无现货需求的投机多头。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面中性，对采购/累购类策略支撑不足；供给：中性，需求：中性，库存：中性。若仍推累进宝3.0 / 采省易3.0，应降低名义量，避免把技术信号交易变成无现货需求的投机多头。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "PK2611",
       "confirmed_main": "PK2611",
       "rollover_candidate": null,
@@ -490,7 +490,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "unchanged"
+      "signal_change": "changed"
     },
     {
       "product_code": "AP",
@@ -530,7 +530,7 @@
       "confidence": 49,
       "otc_strategy": "凤凰累沽2.0 / 惠鑫保2.0",
       "otc_reason": "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
-      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给=neutral，需求=neutral，库存=neutral。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给：中性，需求：中性，库存：中性。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "AP2701",
       "confirmed_main": "AP2701",
       "rollover_candidate": null,
@@ -539,7 +539,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "unchanged"
+      "signal_change": "changed"
     },
     {
       "product_code": "JD",
@@ -579,7 +579,7 @@
       "confidence": 54,
       "otc_strategy": "凤凰累沽2.0 / 惠鑫保2.0",
       "otc_reason": "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
-      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给=neutral，需求=bearish，库存=neutral。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面中性，与偏空OTC策略存在冲突；供给：中性，需求：偏空，库存：中性。若仍推凤凰累沽2.0 / 惠鑫保2.0，应优先保护型结构、降低增强型敲入风险，尤其避免在强基差下过度做凤凰累沽。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "JD2608",
       "confirmed_main": "JD2608",
       "rollover_candidate": null,
@@ -588,7 +588,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "unchanged"
+      "signal_change": "changed"
     }
   ],
   "contracts": [

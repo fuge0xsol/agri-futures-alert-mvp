@@ -243,9 +243,13 @@ def build_otc_fundamental_analysis(item: dict, direction: str, strategy: str) ->
     f_score = int(item.get("fundamental_score", 0) or 0)
     t_score = int(item.get("technical_score", 0) or 0)
     total_score = int(item.get("total_score", t_score) or 0)
-    supply_bias = str(item.get("supply_bias", "neutral") or "neutral")
-    demand_bias = str(item.get("demand_bias", "neutral") or "neutral")
-    inventory_bias = str(item.get("inventory_bias", "neutral") or "neutral")
+    def bias_cn(value: str) -> str:
+        mapping = {"bullish": "偏多", "bearish": "偏空", "neutral": "中性"}
+        return mapping.get(str(value or "").lower(), "暂无")
+
+    supply_bias = bias_cn(item.get("supply_bias", "neutral"))
+    demand_bias = bias_cn(item.get("demand_bias", "neutral"))
+    inventory_bias = bias_cn(item.get("inventory_bias", "neutral"))
     note = str(item.get("fundamental_note", "") or "")
 
     if f_score >= 30:
@@ -255,7 +259,7 @@ def build_otc_fundamental_analysis(item: dict, direction: str, strategy: str) ->
     else:
         f_view = "基本面中性"
 
-    bias_text = f"供给={supply_bias}，需求={demand_bias}，库存={inventory_bias}"
+    bias_text = f"供给：{supply_bias}，需求：{demand_bias}，库存：{inventory_bias}"
     proxy_note = "基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。"
 
     if direction == "long":
