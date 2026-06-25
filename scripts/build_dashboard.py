@@ -113,16 +113,18 @@ def main() -> None:
     button {{ background:var(--panel2); color:var(--text); border:1px solid #374151; border-radius:999px; padding:8px 12px; cursor:pointer; }}
     button.active {{ border-color:var(--blue); color:#bfdbfe; }}
     main {{ padding:0 24px 32px; }}
-    table {{ width:100%; border-collapse:collapse; background:var(--panel); border-radius:14px; overflow:hidden; }}
+    .table-wrap {{ width:100%; overflow-x:auto; border:1px solid #263244; border-radius:14px; background:var(--panel); }}
+    table {{ width:100%; min-width:1180px; border-collapse:collapse; background:var(--panel); }}
+    thead {{ display:table-header-group; }} tbody {{ display:table-row-group; }}
     th,td {{ padding:10px 12px; border-bottom:1px solid #263244; text-align:left; vertical-align:top; font-size:13px; }}
-    th {{ color:#cbd5e1; background:#172033; position:sticky; top:82px; z-index:1; }}
+    th {{ color:#cbd5e1; background:#172033; position:static; top:auto; z-index:auto; }}
     tr:hover {{ background:#172033; }}
     .tag {{ display:inline-block; border-radius:999px; padding:2px 8px; font-size:12px; border:1px solid #334155; }}
     .long {{ color:var(--green); }} .short {{ color:var(--red); }} .neutral {{ color:var(--muted); }}
     .score {{ font-weight:700; }}
     .reason {{ max-width:420px; line-height:1.45; color:#cbd5e1; }}
     .alert {{ border-left:4px solid var(--yellow); }}
-    @media (max-width:900px) {{ .grid {{ grid-template-columns:repeat(2,1fr); }} table {{ display:block; overflow-x:auto; }} }}
+    @media (max-width:900px) {{ .grid {{ grid-template-columns:repeat(2,1fr); }} .table-wrap {{ overflow-x:auto; }} }}
   </style>
 </head>
 <body>
@@ -144,6 +146,7 @@ def main() -> None:
   <button data-filter=\"changed\">新增/变化</button>
 </div>
 <main>
+  <div class="table-wrap">
   <table>
     <thead>
       <tr>
@@ -152,6 +155,7 @@ def main() -> None:
     </thead>
     <tbody id=\"rows\"></tbody>
   </table>
+  </div>
 </main>
 <script>
 const DATA = {json.dumps(payload, ensure_ascii=False)};
