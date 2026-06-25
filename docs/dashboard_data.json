@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026年06月26日00时38分",
+  "generated_at": "2026年06月26日02时59分",
   "first_web_push_at": "2026年06月25日16时06分",
   "signals": [
     {
@@ -49,7 +49,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "RM",
@@ -89,7 +89,7 @@
       "confidence": 3,
       "otc_strategy": "暂不匹配",
       "otc_reason": "信号不足，不建议新开方向性场外期权结构。",
-      "otc_fundamental_analysis": "基本面偏多但技术未确认，暂不做强方向匹配；供给：偏多，需求：中性，库存：中性。更适合观察采购类结构的触发条件，例如采省易/累进宝，等待价格站回关键均线后再提高策略等级。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面偏多但技术未确认，暂不做强方向匹配；供给：偏多，需求：中性，库存：中性。更适合观察采购类结构的触发条件，例如累进宝4.0/采省易3.0，等待价格站回关键均线后再提高策略等级。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "RM2609",
       "confirmed_main": "RM2609",
       "rollover_candidate": null,
@@ -147,7 +147,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "P",
@@ -196,7 +196,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "OI",
@@ -245,7 +245,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "C",
@@ -294,7 +294,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "SR",
@@ -343,7 +343,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "CF",
@@ -383,7 +383,7 @@
       "confidence": 36,
       "otc_strategy": "暂不匹配",
       "otc_reason": "信号不足，不建议新开方向性场外期权结构。",
-      "otc_fundamental_analysis": "基本面偏多但技术未确认，暂不做强方向匹配；供给：偏多，需求：中性，库存：中性。更适合观察采购类结构的触发条件，例如采省易/累进宝，等待价格站回关键均线后再提高策略等级。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_fundamental_analysis": "基本面偏多但技术未确认，暂不做强方向匹配；供给：偏多，需求：中性，库存：中性。更适合观察采购类结构的触发条件，例如累进宝4.0/采省易3.0，等待价格站回关键均线后再提高策略等级。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "CF2609",
       "confirmed_main": "CF2609",
       "rollover_candidate": null,
@@ -441,7 +441,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "PK",
@@ -479,9 +479,9 @@
       "stop_loss": 8218.6429,
       "take_profit": 8568.9285,
       "confidence": 49,
-      "otc_strategy": "累进宝3.0 / 采省易3.0",
-      "otc_reason": "偏多但强度一般，适合震荡偏强采购场景：争取区间补贴或上涨保护，下跌时需能承接采购/多头敞口。",
-      "otc_fundamental_analysis": "基本面中性，对采购/累购类策略支撑不足；供给：中性，需求：中性，库存：中性。若仍推累进宝3.0 / 采省易3.0，应降低名义量，避免把技术信号交易变成无现货需求的投机多头。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
+      "otc_strategy": "累进宝4.0 / 采省易3.0",
+      "otc_reason": "偏多但强度一般，优先匹配实际运用最多的累进宝4.0：适合震荡偏强采购场景，争取区间补贴或采购优化，下跌时需能承接采购/多头敞口。",
+      "otc_fundamental_analysis": "基本面中性，对采购/累购类策略支撑不足；供给：中性，需求：中性，库存：中性。若仍推累进宝4.0 / 采省易3.0，应降低名义量，避免把技术信号交易变成无现货需求的投机多头。基本面来自现货/基差代理，需结合库存、仓单、进口利润和产业订单复核。",
       "detected_main": "PK2611",
       "confirmed_main": "PK2611",
       "rollover_candidate": null,
@@ -539,7 +539,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "JD",
@@ -588,7 +588,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     }
   ],
   "contracts": [

@@ -218,12 +218,12 @@ def match_otc_strategy(direction: str, confidence: int) -> tuple[str, str]:
     if direction == "long":
         if confidence >= 70:
             return (
-                "采省易3.0 / 累进宝Plus",
-                "偏多信号较强，优先用采购套保类结构：保护上涨采购风险，同时接受上涨保护封顶或下跌被动低位建多。",
+                "累进宝4.0 / 采省易3.0",
+                "偏多信号较强，优先用实际运用更高频的采购套保结构：累进宝4.0用于优化采购成本并承接下跌建多风险；采省易3.0作为更偏保护型备选。",
             )
         return (
-            "累进宝3.0 / 采省易3.0",
-            "偏多但强度一般，适合震荡偏强采购场景：争取区间补贴或上涨保护，下跌时需能承接采购/多头敞口。",
+            "累进宝4.0 / 采省易3.0",
+            "偏多但强度一般，优先匹配实际运用最多的累进宝4.0：适合震荡偏强采购场景，争取区间补贴或采购优化，下跌时需能承接采购/多头敞口。",
         )
     if direction == "short":
         if confidence >= 70:
@@ -287,7 +287,7 @@ def build_otc_fundamental_analysis(item: dict, direction: str, strategy: str) ->
     if f_score >= 30:
         return (
             f"{f_view}但技术未确认，暂不做强方向匹配；{bias_text}。"
-            f"更适合观察采购类结构的触发条件，例如采省易/累进宝，等待价格站回关键均线后再提高策略等级。{proxy_note}"
+            f"更适合观察采购类结构的触发条件，例如累进宝4.0/采省易3.0，等待价格站回关键均线后再提高策略等级。{proxy_note}"
         )
     if f_score <= -30:
         return (
