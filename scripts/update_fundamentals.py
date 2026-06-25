@@ -136,7 +136,6 @@ def calc_factor(row_group: pd.DataFrame, code: str, name: str, extra: dict | Non
         f"AKShare现货/基差代理：现货{spot_latest}，主力基差率{basis_rate:.4f}，"
         f"现货动量分{spot_momentum_score}，基差分{basis_score}。"
         f"{inventory_note}"
-        "该分数是半自动代理，不等同完整库存/供需模型。"
     )
     return {
         "product_code": code,
