@@ -1,0 +1,13 @@
+﻿product_code,product_name,fundamental_score,inventory_bias,supply_bias,demand_bias,macro_bias,note,updated_at
+M,豆粕,-21,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货2884.0，主力基差率0.0236，现货动量分3，基差分-24。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+RM,菜粕,53,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货2426.0，主力基差率-0.0453，现货动量分13，基差分40。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+Y,豆油,20,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货8522.0，主力基差率-0.0151，现货动量分5，基差分15。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+P,棕榈,-16,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货9144.0，主力基差率0.0209，现货动量分5，基差分-21。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+OI,菜油,22,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货10012.0，主力基差率-0.0262，现货动量分-4，基差分26。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+C,玉米,-12,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货2300.0，主力基差率0.0113，现货动量分-1，基差分-11。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+SR,白糖,9,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货5300.0，主力基差率-0.0111，现货动量分-2，基差分11。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+CF,棉花,46,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货17614.17，主力基差率-0.0965，现货动量分6，基差分40。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+LH,生猪,-39,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货9500.0，主力基差率0.2537，现货动量分1，基差分-40。该分数是半自动代理，不等同完整库存/供需模型。,20260624
+PK,花生,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-06-25
+AP,鲜苹果,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-06-25
+JD,鸡蛋,-18,neutral,neutral,bearish,neutral,AKShare现货/基差代理：现货4500.0，主力基差率-0.0120，现货动量分-30，基差分12。该分数是半自动代理，不等同完整库存/供需模型。,20260624
