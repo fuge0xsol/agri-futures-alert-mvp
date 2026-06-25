@@ -162,6 +162,13 @@ document.getElementById('longCount').textContent = DATA.stats.long_count;
 document.getElementById('shortCount').textContent = DATA.stats.short_count;
 
 function cls(dir) {{ return dir === 'long' ? 'long' : dir === 'short' ? 'short' : 'neutral'; }}
+function biasText(v) {{
+  if (v === 'bullish') return '偏多';
+  if (v === 'bearish') return '偏空';
+  if (v === 'neutral') return '中性';
+  return '暂无';
+}}
+function factorBiasText(r) {{ return `供给：${{biasText(r.supply_bias)}} / 需求：${{biasText(r.demand_bias)}} / 库存：${{biasText(r.inventory_bias)}}`; }}
 function directionText(r) {{ return `${{r.action || '-'}} / ${{r.signal_direction || '-'}}`; }}
 function isChanged(r) {{ return ['new','changed'].includes(r.signal_change) || r.main_changed; }}
 function render(filter='all') {{
@@ -183,7 +190,7 @@ function render(filter='all') {{
       <td><span class=\"score ${{Number(r.total_score) >= 0 ? 'long' : 'short'}}\">总分：${{r.total_score ?? '-'}}</span><br><span class=\"muted\">技术：${{r.technical_score ?? '-'}} / 基本面：${{r.fundamental_score ?? 0}} / 置信：${{r.confidence ?? '-'}}</span></td>
       <td>入场：${{r.entry ?? '-'}}<br>止损：${{r.stop_loss ?? '-'}}<br>目标：${{r.take_profit ?? '-'}}</td>
       <td><b>${{r.otc_strategy || '-'}}</b><br><span class=\"muted\">${{r.otc_reason || ''}}</span><br><span class=\"muted\">策略基本面：${{r.otc_fundamental_analysis || '-'}}</span></td>
-      <td class=\"reason\">${{r.reason || '-'}}<br><span class=\"muted\">${{r.fundamental_note || ''}}</span></td>
+      <td class=\"reason\">${{r.reason || '-'}}<br><span class=\"muted\">${{factorBiasText(r)}}</span><br><span class=\"muted\">${{r.fundamental_note || ''}}</span></td>
       <td>${{r.signal_change || '-'}}<br><span class=\"muted\">换月：${{r.rollover_status || '-'}}</span></td>`;
     tbody.appendChild(tr);
   }});
