@@ -117,6 +117,13 @@ docs/dashboard_data.json
 3. 使用 `.github/workflows/pages.yml` 自动构建和部署。
 4. GitHub Actions 定时规则为每小时更新一次网页，通常在每小时第 5 分钟触发，实际可能延迟数分钟。
 
+Dashboard 页头会标注：
+
+```text
+生成时间：本次网页构建时间
+网页首次推送：首次生成/部署网页的时间
+```
+
 注意：GitHub Pages 是静态网页，本身不能主动推送手机通知；动态提醒继续用 Telegram 定时任务。当前 Telegram 动态提醒也已设置为每小时第 5 分钟运行，网页负责展示最新信号和状态。
 
 ## 当前品种

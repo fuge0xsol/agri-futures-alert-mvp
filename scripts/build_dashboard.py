@@ -9,12 +9,35 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "output"
 DOCS = ROOT / "docs"
+STATE = ROOT / "state"
+DASHBOARD_STATE = STATE / "dashboard_state.json"
 
 
 def load_json(path: Path, default):
     if not path.exists():
         return default
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def save_json(path: Path, data) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def resolve_first_web_push_time(generated_at: str) -> str:
+    """Keep a stable first web-push/deploy timestamp across local and GitHub runs."""
+    state = load_json(DASHBOARD_STATE, {})
+    if state.get("first_web_push_at"):
+        return state["first_web_push_at"]
+
+    existing_payload = load_json(DOCS / "dashboard_data.json", {})
+    first_web_push_at = (
+        existing_payload.get("first_web_push_at")
+        or existing_payload.get("generated_at")
+        or generated_at
+    )
+    save_json(DASHBOARD_STATE, {"first_web_push_at": first_web_push_at})
+    return first_web_push_at
 
 
 def fmt(v):
@@ -26,6 +49,7 @@ def main() -> None:
     signals = load_json(OUT / "signals.json", [])
     contracts = load_json(OUT / "main_contracts.json", [])
     generated_at = datetime.now().isoformat(timespec="seconds")
+    first_web_push_at = resolve_first_web_push_time(generated_at)
 
     active = [s for s in signals if s.get("signal_direction") in {"long", "short"}]
     long_count = sum(1 for s in active if s.get("signal_direction") == "long")
@@ -33,6 +57,7 @@ def main() -> None:
 
     payload = {
         "generated_at": generated_at,
+        "first_web_push_at": first_web_push_at,
         "signals": signals,
         "contracts": contracts,
         "stats": {
@@ -79,7 +104,7 @@ def main() -> None:
 <body>
 <header>
   <h1>农产品期货主力合约 Dashboard</h1>
-  <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略优先使用用户场外期权产品库。生成时间：{generated_at}</div>
+  <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略优先使用用户场外期权产品库。生成时间：{generated_at}；网页首次推送：{first_web_push_at}</div>
 </header>
 <section class=\"grid\">
   <div class=\"card\"><div class=\"muted\">跟踪品种</div><div class=\"stat\" id=\"products\">-</div></div>
