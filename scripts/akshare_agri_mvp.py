@@ -213,29 +213,70 @@ def calc_technical_snapshot(bars: pd.DataFrame) -> dict:
     }
 
 
-def match_otc_strategy(direction: str, confidence: int) -> tuple[str, str]:
-    """Return user-provided OTC product family and explanation."""
+def match_otc_strategy(item: dict, direction: str, confidence: int) -> tuple[str, str]:
+    """Return richer user-provided OTC product families and scenario explanation."""
+    f_score = int(item.get("fundamental_score", 0) or 0)
+    t_score = int(item.get("technical_score", 0) or 0)
+    total_score = int(item.get("total_score", t_score) or 0)
+
     if direction == "long":
-        if confidence >= 70:
+        if f_score >= 25 and t_score >= 40:
             return (
-                "累进宝4.0 / 采省易3.0",
-                "偏多信号较强，优先用实际运用更高频的采购套保结构：累进宝4.0用于优化采购成本并承接下跌建多风险；采省易3.0作为更偏保护型备选。",
+                "累进宝4.0 / 累进宝Plus / 采省易3.0",
+                "采购方强偏多组合：累进宝4.0作为默认采购优化；累进宝Plus用于希望保留下方补贴且参与上方突破；采省易3.0用于更重视上涨保护、同时接受下方1:1采购的客户。",
+            )
+        if f_score >= 25 and t_score < 40:
+            return (
+                "采省易3.0 / 气囊累计1.0 / 累进宝4.0小名义",
+                "基本面偏多但技术未完全确认：先用采省易3.0做保护型采购，或用气囊累计1.0保留安全垫；累进宝4.0只适合有真实采购需求且愿意承接下跌的客户，名义量应偏小。",
+            )
+        if confidence >= 60:
+            return (
+                "累进宝4.0 / 采省易2.0 / 海鸥看涨结构",
+                "技术偏多但基本面支撑一般：优先低成本采购优化，不建议裸多；采省易2.0/海鸥看涨更适合控制权利金和上方保护成本。",
             )
         return (
             "累进宝4.0 / 采省易3.0",
-            "偏多但强度一般，优先匹配实际运用最多的累进宝4.0：适合震荡偏强采购场景，争取区间补贴或采购优化，下跌时需能承接采购/多头敞口。",
+            "偏多但强度一般：累进宝4.0仍作为采购端默认结构，采省易3.0作为保护型备选；需确认真实采购计划，避免把套保结构做成投机多头。",
         )
+
     if direction == "short":
-        if confidence >= 70:
+        if f_score <= -25 and t_score <= -40:
             return (
-                "惠鑫保1.0 / 惠鑫保2.0",
-                "偏空信号较强，优先用库存/销售保护类结构：保护下跌风险；1.0保护更完整，2.0成本更低但大跌可能保护中断。",
+                "惠鑫保1.0 / 惠鑫保2.0 / 凤凰累沽2.0",
+                "库存方强偏空组合：惠鑫保1.0保护更完整，惠鑫保2.0成本更低但大跌可能保护中断；若客户更重视区间增收且有库存覆盖，可少量配置凤凰累沽2.0。",
+            )
+        if f_score <= -25 and t_score > -40:
+            return (
+                "惠鑫保2.0 / 惠增收 / 凤凰累沽2.0小名义",
+                "基本面偏空但技术未完全破位：先用惠鑫保2.0做低成本下跌保护；若库存方想区间增收，可用惠增收；凤凰累沽2.0只做小名义，避免上涨敲入后空单风险。",
+            )
+        if confidence >= 60:
+            return (
+                "凤凰累沽2.0 / 惠鑫保2.0 / 领式保护",
+                "技术偏空但基本面不强：更适合库存销售增强或保护型结构；凤凰累沽2.0获取区间票息，惠鑫保2.0保护下跌，领式保护用于控制成本但会牺牲部分上涨收益。",
             )
         return (
-            "凤凰累沽2.0 / 惠鑫保2.0",
-            "偏空但强度一般，适合库存销售或高位增强：区间拿补贴或低成本保护；若选择凤凰累沽，默认用2.0版本，需接受上涨敲入后建空风险。",
+            "凤凰累沽2.0 / 惠鑫保2.0 / 惠增收",
+            "偏空但强度一般：库存方可在凤凰累沽2.0、惠鑫保2.0、惠增收之间按目标选择——增收、保护或保留上涨弹性；必须确认现货库存覆盖敲入后的空单风险。",
         )
-    return "暂不匹配", "信号不足，不建议新开方向性场外期权结构。"
+
+    if f_score >= 30:
+        return (
+            "采省易3.0观察 / 气囊累计1.0 / 累进宝4.0触发单",
+            "基本面偏多但综合信号未触发：采购方先观察保护型结构，等价格站回关键均线再提高累进宝4.0名义；气囊累计适合不想追多但担心上涨的防守采购。",
+        )
+    if f_score <= -30:
+        return (
+            "惠鑫保2.0观察 / 惠增收 / 凤凰累沽2.0触发单",
+            "基本面偏空但技术未确认：库存方先观察下跌保护和区间增收，等总分转负或跌破支撑后再启动凤凰累沽2.0；保护优先于增强。",
+        )
+    if abs(total_score) >= 25:
+        return (
+            "轻仓观察：领式 / 海鸥 / 小名义累计",
+            "方向不足但波动可能放大：只适合做低名义、低成本的保护或区间结构，不建议新开强方向凤凰累计。",
+        )
+    return "暂不匹配", "信号和基本面都不足，不建议新开方向性场外期权结构；仅保留报价观察。"
 
 
 def build_otc_fundamental_analysis(item: dict, direction: str, strategy: str) -> str:
@@ -287,7 +328,7 @@ def build_otc_fundamental_analysis(item: dict, direction: str, strategy: str) ->
     if f_score >= 30:
         return (
             f"{f_view}但技术未确认，暂不做强方向匹配；{bias_text}。"
-            f"更适合观察采购类结构的触发条件，例如累进宝4.0/采省易3.0，等待价格站回关键均线后再提高策略等级。{proxy_note}"
+            f"更适合观察采购类结构的触发条件，例如采省易3.0、气囊累计1.0、累进宝4.0小名义触发单，等待价格站回关键均线后再提高策略等级。{proxy_note}"
         )
     if f_score <= -30:
         return (
@@ -335,7 +376,7 @@ def generate_signal(item: dict, cfg: SignalConfig) -> dict:
         entry = stop = target = None
         confidence = max(0, min(100, abs(score)))
 
-    strategy, strategy_reason = match_otc_strategy(direction, confidence)
+    strategy, strategy_reason = match_otc_strategy(item, direction, confidence)
     strategy_fundamental_analysis = build_otc_fundamental_analysis(item, direction, strategy)
     return {
         "signal_direction": direction,
