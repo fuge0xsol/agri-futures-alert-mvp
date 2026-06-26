@@ -98,7 +98,7 @@ def main() -> None:
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
   <meta http-equiv=\"refresh\" content=\"300\" />
-  <title>农产品期货主力合约 Dashboard（七彩云南组）</title>
+  <title>农产品期货主力合约 Dashboard（七彩云南丰收组）</title>
   <style>
     :root {{ --bg:#0f172a; --panel:#111827; --panel2:#1f2937; --text:#e5e7eb; --muted:#94a3b8; --red:#f87171; --green:#34d399; --yellow:#facc15; --blue:#60a5fa; }}
     * {{ box-sizing:border-box; }}
@@ -129,7 +129,7 @@ def main() -> None:
 </head>
 <body>
 <header>
-  <h1>农产品期货主力合约 Dashboard（七彩云南组）</h1>
+  <h1>农产品期货主力合约 Dashboard（七彩云南丰收组）</h1>
   <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略优先使用用户场外期权产品库。生成时间：{generated_at}（北京时间）</div>
 </header>
 <section class=\"grid\">
