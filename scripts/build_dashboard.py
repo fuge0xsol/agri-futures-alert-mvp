@@ -106,14 +106,12 @@ def main() -> None:
     * {{ box-sizing:border-box; }}
     body {{ margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,"Noto Sans SC",sans-serif; }}
     header {{ padding:18px 24px; border-bottom:1px solid #263244; background:linear-gradient(180deg,#0b1220 0%,#0f172a 100%); position:sticky; top:0; z-index:2; }}
-    .brand {{ display:flex; align-items:center; justify-content:space-between; gap:20px; }}
+    .brand {{ display:flex; align-items:center; gap:20px; }}
     .brand-left {{ display:flex; align-items:center; gap:16px; min-width:0; }}
     .brand-icon {{ width:72px; height:72px; border-radius:22px; background:#fff; box-shadow:0 12px 28px rgba(0,0,0,.22); flex:0 0 auto; }}
     .brand-copy {{ min-width:0; }}
     .brand-kicker {{ color:#9fbe9f; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:4px; }}
     h1 {{ margin:0 0 8px; font-size:25px; letter-spacing:-.02em; }}
-    .brand-site {{ display:flex; align-items:center; gap:10px; padding:10px 14px; border:1px solid #d9e8d1; border-radius:999px; background:#ffffff; color:#16351f; font-size:22px; font-weight:800; letter-spacing:-.03em; box-shadow:0 12px 28px rgba(0,0,0,.20); white-space:nowrap; }}
-    .brand-site img {{ width:34px; height:34px; border-radius:10px; }}
     .muted {{ color:var(--muted); font-size:13px; }}
     .grid {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; padding:18px 24px; }}
     .card {{ background:var(--panel); border:1px solid #263244; border-radius:14px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.18); }}
@@ -133,7 +131,7 @@ def main() -> None:
     .score {{ font-weight:700; }}
     .reason {{ max-width:420px; line-height:1.45; color:#cbd5e1; }}
     .alert {{ border-left:4px solid var(--yellow); }}
-    @media (max-width:900px) {{ .brand {{ align-items:flex-start; flex-direction:column; }} .brand-icon {{ width:60px; height:60px; border-radius:18px; }} .brand-site {{ font-size:18px; }} .grid {{ grid-template-columns:repeat(2,1fr); }} .table-wrap {{ overflow-x:auto; }} }}
+    @media (max-width:900px) {{ .brand {{ align-items:flex-start; flex-direction:column; }} .brand-icon {{ width:60px; height:60px; border-radius:18px; }} .grid {{ grid-template-columns:repeat(2,1fr); }} .table-wrap {{ overflow-x:auto; }} }}
   </style>
 </head>
 <body>
@@ -147,7 +145,6 @@ def main() -> None:
         <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略使用用户场外期权产品库。生成时间：{generated_at}（北京时间）</div>
       </div>
     </div>
-    <div class=\"brand-site\"><img src=\"assets/brand/agri-futures-icon.svg\" alt=\"\" />nongchan.us</div>
   </div>
 </header>
 <section class=\"grid\">
