@@ -108,7 +108,7 @@ def main() -> None:
     header {{ padding:18px 24px; border-bottom:1px solid #263244; background:linear-gradient(180deg,#0b1220 0%,#0f172a 100%); position:sticky; top:0; z-index:2; }}
     .brand {{ display:flex; align-items:center; gap:20px; }}
     .brand-left {{ display:flex; align-items:center; gap:16px; min-width:0; }}
-    .brand-icon {{ width:72px; height:72px; border-radius:22px; background:#fff; box-shadow:0 12px 28px rgba(0,0,0,.22); flex:0 0 auto; }}
+    .brand-icon {{ width:260px; height:auto; max-height:88px; border-radius:18px; background:#fff; box-shadow:0 12px 28px rgba(0,0,0,.22); flex:0 0 auto; object-fit:contain; }}
     .brand-copy {{ min-width:0; }}
     .brand-kicker {{ color:#9fbe9f; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:4px; }}
     h1 {{ margin:0 0 8px; font-size:25px; letter-spacing:-.02em; }}
@@ -128,21 +128,22 @@ def main() -> None:
     tr:hover {{ background:#172033; }}
     .tag {{ display:inline-block; border-radius:999px; padding:2px 8px; font-size:12px; border:1px solid #334155; }}
     .long {{ color:var(--green); }} .short {{ color:var(--red); }} .neutral {{ color:var(--muted); }}
+    .dynamic-update-time {{ color:#86efac !important; font-weight:900 !important; font-size:14px; }}
     .score {{ font-weight:700; }}
     .reason {{ max-width:420px; line-height:1.45; color:#cbd5e1; }}
     .alert {{ border-left:4px solid var(--yellow); }}
-    @media (max-width:900px) {{ .brand {{ align-items:flex-start; flex-direction:column; }} .brand-icon {{ width:60px; height:60px; border-radius:18px; }} .grid {{ grid-template-columns:repeat(2,1fr); }} .table-wrap {{ overflow-x:auto; }} }}
+    @media (max-width:900px) {{ .brand {{ align-items:flex-start; flex-direction:column; }} .brand-left {{ align-items:flex-start; flex-direction:column; }} .brand-icon {{ width:min(260px,100%); max-height:none; border-radius:16px; }} .grid {{ grid-template-columns:repeat(2,1fr); }} .table-wrap {{ overflow-x:auto; }} }}
   </style>
 </head>
 <body>
 <header>
   <div class=\"brand\">
     <div class=\"brand-left\">
-      <img class=\"brand-icon\" src=\"assets/brand/agri-futures-icon.svg\" alt=\"nongchan.us logo\" />
+      <img class=\"brand-icon\" src=\"assets/brand/nongchan-dashboard-logo.jpg\" alt=\"nongchan.us Agri Future Dashboard logo\" />
       <div class=\"brand-copy\">
         <div class=\"brand-kicker\">Agri Futures Dashboard</div>
         <h1>农产品期货主力合约 Dashboard（七彩云南丰收组）</h1>
-        <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略使用用户场外期权产品库。生成时间：{generated_at}（北京时间）</div>
+        <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略使用用户场外期权产品库。<strong class=\"dynamic-update-time\">动态更新时间：{generated_at}（北京时间）</strong></div>
       </div>
     </div>
   </div>
