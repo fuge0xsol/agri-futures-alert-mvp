@@ -108,7 +108,7 @@ def main() -> None:
     header {{ padding:18px 24px; border-bottom:1px solid #263244; background:linear-gradient(180deg,#0b1220 0%,#0f172a 100%); position:sticky; top:0; z-index:2; }}
     .brand {{ display:flex; align-items:center; gap:20px; }}
     .brand-left {{ display:flex; align-items:center; gap:16px; min-width:0; }}
-    .brand-icon {{ width:260px; height:auto; max-height:88px; border-radius:18px; background:#fff; box-shadow:0 12px 28px rgba(0,0,0,.22); flex:0 0 auto; object-fit:contain; }}
+    .brand-icon {{ width:260px; height:auto; max-height:88px; border-radius:18px; background:transparent; box-shadow:0 12px 28px rgba(0,0,0,.22); flex:0 0 auto; object-fit:contain; }}
     .brand-copy {{ min-width:0; }}
     .brand-kicker {{ color:#9fbe9f; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:4px; }}
     h1 {{ margin:0 0 8px; font-size:25px; letter-spacing:-.02em; }}
@@ -139,11 +139,11 @@ def main() -> None:
 <header>
   <div class=\"brand\">
     <div class=\"brand-left\">
-      <img class=\"brand-icon\" src=\"assets/brand/nongchan-dashboard-logo.jpg\" alt=\"nongchan.us Agri Future Dashboard logo\" />
+      <img class=\"brand-icon\" src=\"assets/brand/nongchan-dashboard-logo-cropped.png\" alt=\"nongchan.us Agri Future Dashboard logo\" />
       <div class=\"brand-copy\">
         <div class=\"brand-kicker\">Agri Futures Dashboard</div>
         <h1>农产品期货主力合约 Dashboard（七彩云南丰收组）</h1>
-        <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略使用用户场外期权产品库。<strong class=\"dynamic-update-time\">动态更新时间：{generated_at}（北京时间）</strong></div>
+        <div class=\"muted\">只跟踪主力合约；技术分 + 基本面分；OTC策略使用用户场外期权产品库。<strong class=\"dynamic-update-time\">动态更新时间：{generated_at}</strong></div>
       </div>
     </div>
   </div>
