@@ -98,6 +98,9 @@ def main() -> None:
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
   <meta http-equiv=\"refresh\" content=\"300\" />
+  <link rel=\"icon\" href=\"assets/brand/favicon.ico\" sizes=\"any\" />
+  <link rel=\"icon\" type=\"image/svg+xml\" href=\"assets/brand/nongchan-dashboard-icon.svg\" />
+  <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"assets/brand/favicon-32.png\" />
   <link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"assets/brand/favicon-192.png\" />
   <link rel=\"apple-touch-icon\" sizes=\"512x512\" href=\"assets/brand/favicon-512.png\" />
   <title>农产品期货主力合约 Dashboard（七彩云南丰收组）</title>
@@ -139,7 +142,7 @@ def main() -> None:
 <header>
   <div class=\"brand\">
     <div class=\"brand-left\">
-      <img class=\"brand-icon\" src=\"assets/brand/nongchan-dashboard-logo.png\" alt=\"nongchan.us Agri Future Dashboard logo\" />
+      <img class=\"brand-icon\" src=\"assets/brand/nongchan-dashboard-logo.svg\" alt=\"nongchan.us Agri Future Dashboard logo\" />
       <div class=\"brand-copy\">
         <div class=\"brand-kicker\">Agri Futures Dashboard</div>
         <h1>农产品期货主力合约 Dashboard（七彩云南丰收组）</h1>

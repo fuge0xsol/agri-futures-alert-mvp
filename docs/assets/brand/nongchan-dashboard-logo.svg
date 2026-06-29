@@ -1,0 +1,45 @@
+<svg width="500" height="180" viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">nongchan.us Agri Future Dashboard</title>
+  <desc id="desc">A green rounded agricultural futures dashboard logo with a crop, sun, bar chart and rising arrow.</desc>
+  <rect width="500" height="180" rx="40" fill="#07863F"/>
+  <rect x="8" y="8" width="168" height="164" rx="36" fill="#F5F0D0"/>
+
+  <g stroke="#07863F" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- sun -->
+    <circle cx="98" cy="50" r="17" stroke-width="7"/>
+    <g stroke-width="6">
+      <line x1="98" y1="22" x2="98" y2="15"/>
+      <line x1="98" y1="85" x2="98" y2="78"/>
+      <line x1="70" y1="50" x2="63" y2="50"/>
+      <line x1="133" y1="50" x2="126" y2="50"/>
+      <line x1="78" y1="30" x2="73" y2="25"/>
+      <line x1="118" y1="30" x2="123" y2="25"/>
+      <line x1="78" y1="70" x2="73" y2="75"/>
+      <line x1="118" y1="70" x2="123" y2="75"/>
+    </g>
+    <!-- crop stem -->
+    <path d="M44 92 C43 112 43 134 44 154" stroke-width="6"/>
+  </g>
+  <g fill="#07863F">
+    <!-- clean crop leaves, kept left so it doesn't collide with chart -->
+    <path d="M43 91 C34 98 35 108 44 113 C53 106 52 96 43 91Z"/>
+    <path d="M32 113 C24 121 26 132 36 137 C44 129 42 119 32 113Z"/>
+    <path d="M55 116 C65 123 66 134 57 141 C47 134 47 123 55 116Z"/>
+    <path d="M35 139 C27 147 29 158 39 162 C47 154 45 145 35 139Z"/>
+    <!-- bar chart -->
+    <rect x="83" y="127" width="12" height="35" rx="3"/>
+    <rect x="108" y="108" width="12" height="54" rx="3"/>
+    <rect x="133" y="88" width="12" height="74" rx="3"/>
+  </g>
+  <g stroke="#07863F" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- rising dashboard line, separated from crop and sun -->
+    <path d="M63 146 L88 119 L108 132 L143 86"/>
+    <path d="M123 88 L143 86 L141 106"/>
+  </g>
+
+  <g fill="#FFFFFF" font-family="Poppins, Montserrat, Arial, Helvetica, sans-serif" font-weight="800">
+    <text x="200" y="54" font-size="37" letter-spacing="-0.6">nongchan.us</text>
+    <text x="200" y="104" font-size="45" letter-spacing="-1.2">Agri Future</text>
+    <text x="200" y="151" font-size="45" letter-spacing="-1.2">Dashboard</text>
+  </g>
+</svg>
