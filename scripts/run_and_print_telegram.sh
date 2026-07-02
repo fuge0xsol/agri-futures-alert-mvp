@@ -22,7 +22,17 @@ fi
 
 AHEAD_COUNT=$(git rev-list --count origin/main..HEAD 2>/dev/null || printf '0')
 if [ "$AHEAD_COUNT" != "0" ]; then
-  if git push origin main >/tmp/agri_futures_git_push.log 2>&1; then
+  TOKEN_FILE="/home/ubuntu/.config/agri_futures_alert_mvp/github_token"
+  if [ -f "$TOKEN_FILE" ]; then
+    GITHUB_TOKEN_VALUE=$(tr -d '\n\r' < "$TOKEN_FILE")
+    AUTH_HEADER=$(printf 'x-access-token:%s' "$GITHUB_TOKEN_VALUE" | base64 -w0)
+    if GIT_TERMINAL_PROMPT=0 git -c http.extraHeader="Authorization: Basic $AUTH_HEADER" push origin main >/tmp/agri_futures_git_push.log 2>&1; then
+      PUBLISH_STATUS="网页已推送到 GitHub Pages。"
+    else
+      PUBLISH_STATUS="网页本地已更新，但 GitHub 推送失败：Token 失效或权限不足。"
+    fi
+    unset GITHUB_TOKEN_VALUE AUTH_HEADER
+  elif git push origin main >/tmp/agri_futures_git_push.log 2>&1; then
     PUBLISH_STATUS="网页已推送到 GitHub Pages。"
   else
     PUBLISH_STATUS="网页本地已更新，但 GitHub 推送失败：缺少/失效的 GitHub 凭证。"
