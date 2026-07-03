@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026年07月03日17时06分",
+  "generated_at": "2026年07月03日18时06分",
   "first_web_push_at": "2026年06月25日16时06分",
   "signals": [
     {
@@ -49,7 +49,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "RM",
@@ -98,7 +98,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "Y",
@@ -196,7 +196,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "OI",
@@ -245,7 +245,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "C",
@@ -294,7 +294,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "SR",
@@ -343,7 +343,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "CF",
@@ -392,7 +392,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "LH",
@@ -441,7 +441,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     },
     {
       "product_code": "PK",
@@ -588,7 +588,7 @@
       "is_confirmed_main": true,
       "is_detected_main": true,
       "main_changed": false,
-      "signal_change": "changed"
+      "signal_change": "unchanged"
     }
   ],
   "contracts": [
