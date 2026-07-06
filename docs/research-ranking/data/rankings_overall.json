@@ -1,0 +1,62 @@
+[
+  {
+    "company_id": "citic",
+    "company_name": "中信期货",
+    "sample_count": 2,
+    "hit_count": 2,
+    "accuracy": 100.0,
+    "avg_return_pct": -1.26,
+    "score": 94.19,
+    "rank": 1
+  },
+  {
+    "company_id": "nanhua",
+    "company_name": "南华期货",
+    "sample_count": 2,
+    "hit_count": 2,
+    "accuracy": 100.0,
+    "avg_return_pct": 4.2,
+    "score": 90.58,
+    "rank": 2
+  },
+  {
+    "company_id": "cofco",
+    "company_name": "中粮期货",
+    "sample_count": 2,
+    "hit_count": 1,
+    "accuracy": 50.0,
+    "avg_return_pct": -3.47,
+    "score": 72.38,
+    "rank": 3
+  },
+  {
+    "company_id": "guotai",
+    "company_name": "国泰君安期货",
+    "sample_count": 2,
+    "hit_count": 2,
+    "accuracy": 100.0,
+    "avg_return_pct": 0.21,
+    "score": 69.81,
+    "rank": 4
+  },
+  {
+    "company_id": "galaxy",
+    "company_name": "银河期货",
+    "sample_count": 2,
+    "hit_count": 1,
+    "accuracy": 50.0,
+    "avg_return_pct": 2.87,
+    "score": 68.89,
+    "rank": 5
+  },
+  {
+    "company_id": "yongan",
+    "company_name": "永安期货",
+    "sample_count": 2,
+    "hit_count": 1,
+    "accuracy": 50.0,
+    "avg_return_pct": 0.04,
+    "score": 51.45,
+    "rank": 6
+  }
+]

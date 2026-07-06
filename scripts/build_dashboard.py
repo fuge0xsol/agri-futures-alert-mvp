@@ -229,9 +229,87 @@ render();
 </body>
 </html>
 """
-    (DOCS / "index.html").write_text(html, encoding="utf-8")
+    (DOCS / "dashboard.html").write_text(html, encoding="utf-8")
+
+    nav_html = f"""<!doctype html>
+<html lang=\"zh-CN\">
+<head>
+  <meta charset=\"utf-8\" />
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
+  <link rel=\"icon\" href=\"assets/brand/favicon.ico\" sizes=\"any\" />
+  <link rel=\"icon\" type=\"image/svg+xml\" href=\"assets/brand/nongchan-dashboard-icon.svg\" />
+  <title>nongchan.us 农产品投研导航</title>
+  <style>
+    :root {{ --bg:#0f172a; --panel:#111827; --panel2:#172033; --text:#e5e7eb; --muted:#94a3b8; --line:#263244; --green:#34d399; --blue:#60a5fa; --yellow:#facc15; }}
+    * {{ box-sizing:border-box; }}
+    body {{ margin:0; min-height:100vh; background:radial-gradient(circle at 20% 0%, #1f3b2d 0, #0f172a 34%, #020617 100%); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,"Noto Sans SC",sans-serif; }}
+    .container {{ max-width:1120px; margin:0 auto; padding:0 22px; }}
+    header {{ padding:48px 0 24px; }}
+    .brand {{ display:flex; align-items:center; gap:18px; }}
+    .brand img {{ width:220px; max-width:48vw; height:auto; border-radius:18px; box-shadow:0 18px 50px rgba(0,0,0,.25); }}
+    .kicker {{ color:#9fbe9f; font-size:13px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px; }}
+    h1 {{ margin:0 0 12px; font-size:clamp(32px,5vw,56px); letter-spacing:-.04em; }}
+    .sub {{ color:var(--muted); max-width:760px; line-height:1.8; font-size:16px; }}
+    .updated {{ color:#86efac; font-weight:900; }}
+    .grid {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; padding:24px 0 48px; }}
+    .card {{ position:relative; overflow:hidden; min-height:240px; background:linear-gradient(180deg,rgba(17,24,39,.94),rgba(15,23,42,.94)); border:1px solid var(--line); border-radius:22px; padding:24px; box-shadow:0 24px 80px rgba(0,0,0,.26); text-decoration:none; color:var(--text); }}
+    .card:before {{ content:\"\"; position:absolute; inset:auto -80px -120px auto; width:240px; height:240px; border-radius:50%; background:rgba(96,165,250,.12); }}
+    .card:hover {{ border-color:#60a5fa; transform:translateY(-2px); transition:.16s ease; }}
+    .tag {{ display:inline-flex; border:1px solid #334155; border-radius:999px; padding:5px 10px; color:#bfdbfe; background:#102033; font-size:12px; font-weight:800; }}
+    .card h2 {{ margin:18px 0 10px; font-size:28px; }}
+    .card p {{ color:#cbd5e1; line-height:1.75; margin:0 0 18px; }}
+    .metrics {{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }}
+    .metric {{ background:rgba(15,23,42,.72); border:1px solid #263244; border-radius:14px; padding:10px 12px; color:#cbd5e1; font-size:13px; }}
+    .cta {{ margin-top:22px; color:var(--yellow); font-weight:900; }}
+    footer {{ border-top:1px solid var(--line); color:var(--muted); padding:22px 0; font-size:13px; }}
+    @media (max-width:760px) {{ .brand {{ align-items:flex-start; flex-direction:column; }} .grid {{ grid-template-columns:1fr; }} }}
+  </style>
+</head>
+<body>
+  <header class=\"container\">
+    <div class=\"brand\">
+      <img src=\"assets/brand/nongchan-dashboard-logo.svg\" alt=\"nongchan.us\" />
+      <div>
+        <div class=\"kicker\">nongchan.us</div>
+        <h1>农产品投研导航</h1>
+        <div class=\"sub\">聚合农产品期货主力合约信号、OTC策略提示与AA期货公司农产品研报准确率回测。<span class=\"updated\">动态更新时间：{generated_at}</span></div>
+      </div>
+    </div>
+  </header>
+  <main class=\"container grid\">
+    <a class=\"card\" href=\"dashboard.html\">
+      <span class=\"tag\">实时信号</span>
+      <h2>农产品期货主力合约 Dashboard</h2>
+      <p>只跟踪主力合约，结合技术分、基本面分、风控位与场外期权结构建议，适合每日低频观察。</p>
+      <div class=\"metrics\">
+        <div class=\"metric\">跟踪品种：{payload['stats']['products']}</div>
+        <div class=\"metric\">有效信号：{payload['stats']['active_signals']}</div>
+        <div class=\"metric\">偏多：{payload['stats']['long_count']}</div>
+        <div class=\"metric\">偏空：{payload['stats']['short_count']}</div>
+      </div>
+      <div class=\"cta\">进入 Dashboard →</div>
+    </a>
+    <a class=\"card\" href=\"research-ranking/\">
+      <span class=\"tag\">研报回测</span>
+      <h2>AA期货公司农产品研报准确率排行</h2>
+      <p>收集AA类期货公司农产品研报观点，按周度、月度窗口回测方向准确率，形成机构、品种和样本明细榜单。</p>
+      <div class=\"metrics\">
+        <div class=\"metric\">周度排行</div>
+        <div class=\"metric\">月度排行</div>
+        <div class=\"metric\">品种榜</div>
+        <div class=\"metric\">观点证据句</div>
+      </div>
+      <div class=\"cta\">查看排行 →</div>
+    </a>
+  </main>
+  <footer class=\"container\">仅作为投研辅助，不构成投资建议；研报功能仅展示结构化观点和回测结果，不转载全文。</footer>
+</body>
+</html>
+"""
+    (DOCS / "index.html").write_text(nav_html, encoding="utf-8")
     (DOCS / "dashboard_data.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Dashboard written: {DOCS / 'index.html'}")
+    print(f"Dashboard written: {DOCS / 'dashboard.html'}")
+    print(f"Navigation written: {DOCS / 'index.html'}")
 
 
 if __name__ == "__main__":
