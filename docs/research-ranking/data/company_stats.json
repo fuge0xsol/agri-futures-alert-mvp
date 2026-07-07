@@ -1,8 +1,8 @@
 [
   {
     "company_name": "国泰君安期货",
-    "report_count": 270,
-    "official_count": 270,
+    "report_count": 251,
+    "official_count": 251,
     "third_party_count": 0,
     "latest_date": "2026-07-07"
   },
@@ -14,13 +14,6 @@
     "latest_date": "2026-07-07"
   },
   {
-    "company_name": "华泰期货",
-    "report_count": 10,
-    "official_count": 10,
-    "third_party_count": 0,
-    "latest_date": "2026-04-20"
-  },
-  {
     "company_name": "银河期货",
     "report_count": 8,
     "official_count": 0,
@@ -28,10 +21,10 @@
     "latest_date": "2026-07-06"
   },
   {
-    "company_name": "永安期货",
-    "report_count": 1,
-    "official_count": 0,
-    "third_party_count": 1,
-    "latest_date": "2026-04-28"
+    "company_name": "华泰期货",
+    "report_count": 2,
+    "official_count": 2,
+    "third_party_count": 0,
+    "latest_date": "2026-04-20"
   }
 ]
