@@ -2,17 +2,18 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AA期货公司农产品研报准确率排行榜</title>
-  <meta name="description" content="AA类期货公司农产品研报观点准确率周度、月度回测排行榜 MVP" />
+  <title>AA期货公司农产品研报库</title>
+  <meta name="description" content="5家AA期货公司农产品日报、周报、早报、晨报公开研报线索库" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
   <header class="hero">
     <div class="container">
-      <div class="eyebrow"></div>
-      <h1>AA期货公司农产品研报准确率排行榜</h1>
-      <p>收集AA类期货公司农产品研报，结构化提取观点，并按周度、月度窗口回测准确率。</p>
+      <div class="eyebrow">Research Ranking</div>
+      <h1>AA期货公司农产品研报库</h1>
+      <p>覆盖中信期货、国泰君安期货、华泰期货、永安期货、银河期货，整理最近3个月农产品日报、周报、早报、晨报及策略周报公开线索。</p>
       <div class="meta" id="site-meta">数据加载中...</div>
     </div>
   </header>
@@ -20,64 +21,50 @@
   <main class="container">
     <section class="cards" id="summary-cards"></section>
 
-    <section class="panel">
-      <div class="section-title">
-        <h2>总榜</h2>
-        <span>按综合评分排序</span>
-      </div>
-      <div class="table-wrap">
-        <table id="overall-table"></table>
-      </div>
-    </section>
-
     <section class="grid two">
       <div class="panel">
         <div class="section-title">
-          <h2>周榜</h2>
-          <span>未来约5个交易日</span>
+          <h2>机构覆盖</h2>
+          <span>按线索数排序</span>
         </div>
-        <div class="table-wrap"><table id="weekly-table"></table></div>
+        <div class="table-wrap"><table id="company-table"></table></div>
       </div>
       <div class="panel">
         <div class="section-title">
-          <h2>月榜</h2>
-          <span>未来约20个交易日</span>
+          <h2>类型分布</h2>
+          <span>日报 / 周报 / 晨报等</span>
         </div>
-        <div class="table-wrap"><table id="monthly-table"></table></div>
+        <div class="table-wrap"><table id="type-table"></table></div>
       </div>
     </section>
 
     <section class="panel">
       <div class="section-title">
-        <h2>品种榜</h2>
-        <span>按品种拆分机构表现</span>
+        <h2>研报明细</h2>
+        <span>当前匹配 <b id="filtered-count">0</b> 条，最多展示500条</span>
       </div>
-      <div class="filters" id="commodity-filters"></div>
-      <div class="table-wrap"><table id="commodity-table"></table></div>
-    </section>
-
-    <section class="panel">
-      <div class="section-title">
-        <h2>最新研报观点与回测</h2>
-        <span>展示观点、证据句、收益率、命中结果</span>
+      <div class="filters controls">
+        <select id="company-filter"></select>
+        <select id="type-filter"></select>
+        <select id="source-filter"></select>
+        <input id="keyword-filter" type="search" placeholder="搜索标题/关键词" />
       </div>
-      <div id="reports-list" class="reports"></div>
+      <div class="table-wrap"><table id="reports-list"></table></div>
     </section>
 
     <section class="panel note">
-      <h2>方法说明</h2>
+      <h2>说明</h2>
       <ul>
-        <li>看多：观察窗口收益率大于阈值，判定命中。</li>
-        <li>看空：观察窗口收益率小于负阈值，判定命中。</li>
-        <li>震荡：观察窗口绝对收益率小于阈值，判定命中。</li>
-        <li>周度默认阈值 ±1.5%，月度默认阈值 ±3.0%；生猪波动更高，阈值相应提高。</li>
-        <li>当前为MVP样例数据，真实版本应接入研报采集、LLM抽取、行情更新和定时推送。</li>
+        <li>本页已用真实公开研报发现数据覆盖原样例排行榜数据。</li>
+        <li>中信期货、国泰君安期货、华泰期货优先使用官方来源。</li>
+        <li>永安期货、银河期货官网对日报/周报批量抓取不稳定，当前含第三方公开线索，建议用于后续二次核验。</li>
+        <li>“准确率排行榜”需要结构化提取观点并接入行情回测后再恢复排名计算。</li>
       </ul>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container">仅展示结构化观点和回测结果，不公开转载研报全文。</div>
+    <div class="container">数据仅用于研究，不构成投资建议。</div>
   </footer>
 
   <script src="assets/app.js"></script>

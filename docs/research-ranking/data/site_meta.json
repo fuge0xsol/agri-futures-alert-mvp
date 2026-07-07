@@ -1,8 +1,8 @@
 {
-  "title": "AA期货公司农产品研报准确率排行榜",
-  "generated_at": "2026-07-06 14:26:53",
-  "report_count": 44,
-  "company_count": 22,
-  "commodity_count": 8,
-  "method_note": "MVP样例数据：按发布日后周度/月度窗口，以主力合约收益率验证看多/看空/震荡观点。"
+  "generated_at": "2026-07-08 00:36:56",
+  "report_count": 398,
+  "company_count": 5,
+  "earliest_date": "2026-04-07",
+  "latest_date": "2026-07-07",
+  "source_note": "已用最近3个月真实公开研报发现数据覆盖research-ranking页面；中信/国泰君安/华泰优先官方源，永安/银河含第三方公开线索。"
 }

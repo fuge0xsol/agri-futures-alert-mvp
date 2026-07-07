@@ -35,6 +35,7 @@ main { padding: 28px 0 56px; }
 .card { padding: 18px; }
 .card .label { color: var(--muted); font-size: 14px; }
 .card .value { margin-top: 8px; font-size: 30px; font-weight: 800; }
+.card .value.small { font-size: 20px; }
 .panel { padding: 22px; margin-bottom: 20px; }
 .section-title { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
 .section-title h2 { margin: 0; font-size: 22px; }
@@ -57,6 +58,17 @@ td { color: #e2e8f0; }
   border-radius: 999px; padding: 8px 12px; cursor: pointer;
 }
 .filters button.active { background: var(--blue); color: #00111f; font-weight: 800; }
+.controls select, .controls input {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 9px 12px;
+  min-width: 150px;
+}
+a { color: #7dd3fc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.empty { color: var(--muted); padding: 16px; }
 .reports { display: grid; gap: 12px; }
 .report-card { padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: rgba(15, 23, 42, .72); }
 .report-title { display: flex; justify-content: space-between; gap: 12px; font-weight: 800; }

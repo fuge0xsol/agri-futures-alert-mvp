@@ -4,94 +4,104 @@ const loadJson = async (path) => {
   return res.json();
 };
 
-const fmt = (value, suffix = '') => `${value}${suffix}`;
-const returnClass = (value) => value >= 0 ? 'return-pos' : 'return-neg';
+const esc = (value) => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
 
 function renderTable(el, rows, columns) {
   el.innerHTML = `
     <thead><tr>${columns.map(c => `<th>${c.label}</th>`).join('')}</tr></thead>
     <tbody>
-      ${rows.map(row => `<tr>${columns.map(c => `<td>${c.render ? c.render(row) : row[c.key]}</td>`).join('')}</tr>`).join('')}
+      ${rows.map(row => `<tr>${columns.map(c => `<td>${c.render ? c.render(row) : esc(row[c.key])}</td>`).join('')}</tr>`).join('')}
     </tbody>
   `;
 }
 
-function rankingColumns() {
+function summarize(rows, key) {
+  const counts = new Map();
+  rows.forEach(r => counts.set(r[key] || '未知', (counts.get(r[key] || '未知') || 0) + 1));
+  return [...counts.entries()].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+}
+
+function reportColumns() {
   return [
-    { label: '排名', render: r => `<span class="rank">${r.rank}</span>` },
-    { label: '机构', key: 'company_name' },
-    { label: '准确率', render: r => fmt(r.accuracy, '%') },
-    { label: '样本数', key: 'sample_count' },
-    { label: '平均收益', render: r => `<span class="${returnClass(r.avg_return_pct)}">${fmt(r.avg_return_pct, '%')}</span>` },
-    { label: '综合分', key: 'score' },
+    { label: '日期', key: 'publish_date' },
+    { label: '公司', key: 'company' },
+    { label: '类型', render: r => `<span class="badge">${esc(r.report_type || '未知')}</span>` },
+    { label: '标题', render: r => `${r.detail_url ? `<a href="${esc(r.detail_url)}" target="_blank" rel="noopener">${esc(r.title)}</a>` : esc(r.title)}` },
+    { label: '来源', key: 'source_type' },
+    { label: '关键词', key: 'matched_keywords' },
   ];
 }
 
 function renderReports(rows) {
   const el = document.getElementById('reports-list');
-  el.innerHTML = rows
-    .sort((a, b) => b.publish_date.localeCompare(a.publish_date))
-    .map(r => `
-      <article class="report-card">
-        <div class="report-title">
-          <span>${r.title}</span>
-          <span class="${r.hit ? 'hit' : 'miss'}">${r.hit ? '命中' : '未命中'}</span>
-        </div>
-        <div class="report-meta">
-          ${r.publish_date} · ${r.company_name} · ${r.commodity_name} · ${r.direction_label} · ${r.horizon === 'weekly' ? '周度' : '月度'} · 收益率 <span class="${returnClass(r.return_pct)}">${r.return_pct}%</span>
-        </div>
-        <div class="evidence">证据句：${r.evidence}</div>
-      </article>
-    `).join('');
+  if (!rows.length) {
+    el.innerHTML = '<div class="empty">没有匹配结果</div>';
+    return;
+  }
+  renderTable(el, rows, reportColumns());
 }
 
-function renderCommodityFilters(rows) {
-  const filters = document.getElementById('commodity-filters');
-  const table = document.getElementById('commodity-table');
-  const commodities = [...new Map(rows.map(r => [r.commodity, r.commodity_name])).entries()];
-  const render = (commodity) => {
-    [...filters.querySelectorAll('button')].forEach(btn => btn.classList.toggle('active', btn.dataset.commodity === commodity));
-    const filtered = commodity === 'ALL' ? rows : rows.filter(r => r.commodity === commodity);
-    renderTable(table, filtered, [
-      { label: '品种', key: 'commodity_name' },
-      ...rankingColumns(),
-    ]);
-  };
-  filters.innerHTML = `<button class="active" data-commodity="ALL">全部</button>` +
-    commodities.map(([symbol, name]) => `<button data-commodity="${symbol}">${name}</button>`).join('');
-  filters.addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON') render(e.target.dataset.commodity);
-  });
-  render('ALL');
+function applyFilters(allRows) {
+  const company = document.getElementById('company-filter').value;
+  const type = document.getElementById('type-filter').value;
+  const source = document.getElementById('source-filter').value;
+  const keyword = document.getElementById('keyword-filter').value.trim().toLowerCase();
+  const rows = allRows.filter(r => {
+    if (company !== 'ALL' && r.company !== company) return false;
+    if (type !== 'ALL' && r.report_type !== type) return false;
+    if (source !== 'ALL' && r.source_type !== source) return false;
+    if (keyword) {
+      const haystack = `${r.title || ''} ${r.matched_keywords || ''} ${r.company || ''}`.toLowerCase();
+      if (!haystack.includes(keyword)) return false;
+    }
+    return true;
+  }).sort((a, b) => String(b.publish_date || '').localeCompare(String(a.publish_date || '')));
+  document.getElementById('filtered-count').textContent = rows.length;
+  renderReports(rows.slice(0, 500));
+}
+
+function fillSelect(id, values, labelAll) {
+  const el = document.getElementById(id);
+  el.innerHTML = `<option value="ALL">${labelAll}</option>` + values.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
 }
 
 async function main() {
-  const [meta, overall, weekly, monthly, commodity, reports] = await Promise.all([
+  const [meta, reports] = await Promise.all([
     loadJson('data/site_meta.json'),
-    loadJson('data/rankings_overall.json'),
-    loadJson('data/rankings_weekly.json'),
-    loadJson('data/rankings_monthly.json'),
-    loadJson('data/rankings_by_commodity.json'),
-    loadJson('data/reports.json'),
+    loadJson('data/raw_reports.json'),
   ]);
 
-  document.getElementById('site-meta').textContent = `更新时间：${meta.generated_at} ｜ 样例研报：${meta.report_count}篇 ｜ 机构：${meta.company_count}家 ｜ 品种：${meta.commodity_count}个`;
-
-  const best = overall[0];
+  document.getElementById('site-meta').textContent = `更新时间：${meta.generated_at} ｜ 研报线索：${meta.report_count}条 ｜ 机构：${meta.company_count}家 ｜ 日期：${meta.earliest_date} 至 ${meta.latest_date}`;
   document.getElementById('summary-cards').innerHTML = `
     <div class="card"><div class="label">覆盖机构</div><div class="value">${meta.company_count}</div></div>
-    <div class="card"><div class="label">覆盖品种</div><div class="value">${meta.commodity_count}</div></div>
-    <div class="card"><div class="label">研报样本</div><div class="value">${meta.report_count}</div></div>
-    <div class="card"><div class="label">当前第一</div><div class="value">${best ? best.company_name : '-'}</div></div>
+    <div class="card"><div class="label">研报线索</div><div class="value">${meta.report_count}</div></div>
+    <div class="card"><div class="label">起始日期</div><div class="value small">${meta.earliest_date}</div></div>
+    <div class="card"><div class="label">最新日期</div><div class="value small">${meta.latest_date}</div></div>
   `;
 
-  renderTable(document.getElementById('overall-table'), overall, rankingColumns());
-  renderTable(document.getElementById('weekly-table'), weekly, rankingColumns());
-  renderTable(document.getElementById('monthly-table'), monthly, rankingColumns());
-  renderCommodityFilters(commodity);
-  renderReports(reports);
+  const companies = summarize(reports, 'company');
+  const types = summarize(reports, 'report_type');
+  const sources = summarize(reports, 'source_type');
+
+  renderTable(document.getElementById('company-table'), companies, [
+    { label: '机构', key: 'name' },
+    { label: '线索数', key: 'count' },
+  ]);
+  renderTable(document.getElementById('type-table'), types, [
+    { label: '类型', key: 'name' },
+    { label: '数量', key: 'count' },
+  ]);
+
+  fillSelect('company-filter', companies.map(x => x.name), '全部公司');
+  fillSelect('type-filter', types.map(x => x.name), '全部类型');
+  fillSelect('source-filter', sources.map(x => x.name), '全部来源');
+
+  ['company-filter', 'type-filter', 'source-filter', 'keyword-filter'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => applyFilters(reports));
+  });
+  applyFilters(reports);
 }
 
 main().catch(err => {
-  document.body.innerHTML = `<main class="container"><div class="panel"><h1>数据加载失败</h1><p>${err.message}</p></div></main>`;
+  document.body.innerHTML = `<main class="container"><div class="panel"><h1>数据加载失败</h1><p>${esc(err.message)}</p></div></main>`;
 });
