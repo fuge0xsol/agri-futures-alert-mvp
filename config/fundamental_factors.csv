@@ -1,13 +1,13 @@
 ﻿product_code,product_name,fundamental_score,inventory_bias,supply_bias,demand_bias,macro_bias,note,updated_at
-M,豆粕,-19,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货2950.0，主力基差率0.0258，现货动量分7，基差分-26。,20260706
-RM,菜粕,24,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货2370.0，主力基差率-0.0278，现货动量分-4，基差分28。,20260706
-Y,豆油,18,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货8630.0，主力基差率-0.0139，现货动量分4，基差分14。,20260706
-P,棕榈,-28,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货9062.0，主力基差率0.0202，现货动量分-8，基差分-20。,20260706
-OI,菜油,26,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货10016.0，主力基差率-0.0275，现货动量分-1，基差分27。,20260706
-C,玉米,-1,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货2288.57，主力基差率-0.0011，现货动量分-2，基差分1。,20260706
-SR,白糖,-5,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货5290.0，主力基差率0.0070，现货动量分2，基差分-7。,20260706
-CF,棉花,54,neutral,bullish,neutral,neutral,"AKShare现货/基差代理：现货17870.5，主力基差率-0.0898，现货动量分14，基差分40。郑商所棉花仓单获取失败，库存按中性处理：ValueError: Excel file format cannot be determined, you must specify an engine manually.",20260706
-LH,生猪,-10,neutral,bearish,bullish,neutral,AKShare现货/基差代理：现货10730.0，主力基差率0.1500，现货动量分30，基差分-40。,20260706
-PK,花生,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-07-07
-AP,鲜苹果,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-07-07
-JD,鸡蛋,-11,neutral,bearish,bullish,neutral,AKShare现货/基差代理：现货4500.0，主力基差率0.0460，现货动量分29，基差分-40。,20260706
+M,豆粕,-19,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货2962.0，主力基差率0.0280，现货动量分9，基差分-28。,20260707
+RM,菜粕,38,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货2402.0，主力基差率-0.0350，现货动量分3，基差分35。,20260707
+Y,豆油,22,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货8710.0，主力基差率-0.0141，现货动量分8，基差分14。,20260707
+P,棕榈,-30,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货9116.0，主力基差率0.0246，现货动量分-5，基差分-25。,20260707
+OI,菜油,34,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货10146.0，主力基差率-0.0284，现货动量分6，基差分28。,20260707
+C,玉米,-10,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货2287.14，主力基差率0.0078，现货动量分-2，基差分-8。,20260707
+SR,白糖,-5,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货5286.67，主力基差率0.0055，现货动量分1，基差分-6。,20260707
+CF,棉花,55,neutral,bullish,neutral,neutral,"AKShare现货/基差代理：现货17904.83，主力基差率-0.0880，现货动量分15，基差分40。郑商所棉花仓单获取失败，库存按中性处理：ValueError: Excel file format cannot be determined, you must specify an engine manually.",20260707
+LH,生猪,-10,neutral,bearish,bullish,neutral,AKShare现货/基差代理：现货11020.0，主力基差率0.1148，现货动量分30，基差分-40。,20260707
+PK,花生,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-07-08
+AP,鲜苹果,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-07-08
+JD,鸡蛋,8,neutral,bearish,bullish,neutral,AKShare现货/基差代理：现货4615.0，主力基差率0.0223，现货动量分30，基差分-22。,20260707
