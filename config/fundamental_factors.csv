@@ -1,13 +1,13 @@
 ﻿product_code,product_name,fundamental_score,inventory_bias,supply_bias,demand_bias,macro_bias,note,updated_at
-M,豆粕,-14,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货2976.0，主力基差率0.0255，现货动量分12，基差分-26。,20260709
-RM,菜粕,30,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货2404.0，主力基差率-0.0275，现货动量分3，基差分27。,20260709
-Y,豆油,23,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货8730.0，主力基差率-0.0137，现货动量分9，基差分14。,20260709
-P,棕榈,-18,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货9200.0，主力基差率0.0167，现货动量分-1，基差分-17。,20260709
-OI,菜油,40,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货10216.0，主力基差率-0.0307，现货动量分9，基差分31。,20260709
+M,豆粕,-13,neutral,bearish,neutral,neutral,AKShare现货/基差代理：现货2976.0，主力基差率0.0255，现货动量分13，基差分-26。,20260709
+RM,菜粕,38,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货2404.0，主力基差率-0.0275，现货动量分11，基差分27。,20260709
+Y,豆油,26,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货8730.0，主力基差率-0.0137，现货动量分12，基差分14。,20260709
+P,棕榈,-13,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货9200.0，主力基差率0.0167，现货动量分4，基差分-17。,20260709
+OI,菜油,44,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货10216.0，主力基差率-0.0307，现货动量分13，基差分31。,20260709
 C,玉米,-13,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货2278.57，主力基差率0.0090，现货动量分-4，基差分-9。,20260709
 SR,白糖,5,neutral,neutral,neutral,neutral,AKShare现货/基差代理：现货5273.33，主力基差率-0.0046，现货动量分0，基差分5。,20260709
-CF,棉花,54,neutral,bullish,neutral,neutral,AKShare现货/基差代理：现货17881.83，主力基差率-0.1092，现货动量分14，基差分40。郑商所棉花仓单：仓单32550张，当日增减-87张，有效预报436张，库存分0。,20260709
+CF,棉花,49,neutral,bullish,neutral,neutral,"AKShare现货/基差代理：现货17881.83，主力基差率-0.1092，现货动量分9，基差分40。郑商所棉花仓单获取失败，库存按中性处理：ValueError: Excel file format cannot be determined, you must specify an engine manually.",20260709
 LH,生猪,-10,neutral,bearish,bullish,neutral,AKShare现货/基差代理：现货11050.0，主力基差率0.1054，现货动量分30，基差分-40。,20260709
-PK,花生,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-07-09
-AP,鲜苹果,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-07-09
+PK,花生,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-07-10
+AP,鲜苹果,0,neutral,neutral,neutral,neutral,未取得AKShare现货/基差数据，按中性处理：该品种无现货/基差行,2026-07-10
 JD,鸡蛋,70,neutral,bullish,bullish,neutral,AKShare现货/基差代理：现货4765.0，主力基差率-0.0541，现货动量分30，基差分40。,20260709
